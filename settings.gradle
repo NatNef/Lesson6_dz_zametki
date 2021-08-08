@@ -1,0 +1,2 @@
+rootProject.name = "Lesson6_dz_zametki"
+include ':app'
