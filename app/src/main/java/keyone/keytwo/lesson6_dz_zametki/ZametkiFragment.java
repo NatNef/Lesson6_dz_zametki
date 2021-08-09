@@ -21,7 +21,9 @@ public class ZametkiFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
-        // переопределим его
+        // переопределим его. В контейнер МэйнАктивити
+        //inflater впихивает в активити контейнер с макетом
+        View view = inflater.inflate(R.layout.fragment_zametki, container,false);
+        return view;
     }
 }
