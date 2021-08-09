@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.opisanie_zametki,OpisanieFragment.newInstance())
+                    .replace(R.id.opisanie_zametki,OpisanieFragment.newInstance(new Menu(0, "test")))
                     .commit();
 }
     }

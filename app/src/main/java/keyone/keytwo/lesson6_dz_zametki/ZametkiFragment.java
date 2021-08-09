@@ -9,13 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.io.Serializable;
+
 public class ZametkiFragment extends Fragment {
 
-    // создаем экземпляры через фабричный метод
-    // создание фрагмента в одном месте, для удобства поменять
-    public static ZametkiFragment newInstance(){
+    public static ZametkiFragment newInstance() {
         return new ZametkiFragment();
-    }
+}
 
     // у фрагмента есть макет, задаем его , метод onCreateView
 
