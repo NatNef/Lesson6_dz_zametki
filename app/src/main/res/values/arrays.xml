@@ -5,12 +5,14 @@
         <item>Название</item>
         <item>Краткое описание</item>
         <item>Дата создания</item>
+        <item>Текст заметки</item>
     </string-array>
     
     <integer-array name="opisanie_imgs">
         <item>@drawable/nazvanie</item>
         <item>@drawable/opisanie</item>
         <item>@drawable/data</item>
+        <item>@drawable/fon2</item>
     </integer-array>
 
 </resources>

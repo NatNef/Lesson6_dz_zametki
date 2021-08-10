@@ -17,14 +17,14 @@ public class MainActivity extends AppCompatActivity {
         // получаем фрагмент-менедер(жанглер)
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.zametki,ZametkiFragment.newInstance())
+                .replace(R.id.zametki_container,ZametkiFragment.newInstance())
                 .commit();
 
         // описание применяем в ландшафтной ориентации
         if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.opisanie_zametki,OpisanieFragment.newInstance(new Menu(0, "test")))
+                    .replace(R.id.opisanie_zametki_container,OpisanieFragment.newInstance(new Menu(0, "test")))
                     .commit();
 }
     }
