@@ -23,7 +23,7 @@ public class OpisanieFragment extends Fragment {
     public static OpisanieFragment newInstance(Menu menu) {
         OpisanieFragment fragment = new OpisanieFragment();
         Bundle bundle = new Bundle();
-        bundle.putSerializable(ARG_MENU, (Serializable) menu);
+        bundle.putParcelable(ARG_MENU, menu);
         fragment.setArguments(bundle);
         return fragment;
     }
