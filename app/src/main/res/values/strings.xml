@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Lesson6_dz_zametki</string>
+    <string name="back">BACK</string>
+    <string name="main_screen">main</string>
+    <string name="favorite_screen">favorite_screen</string>
+    <string name="setting">setting</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_screen_label">Main screen Label</string>
+    <string name="use_backstack">use backstack</string>
 </resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="@dimen/textSize_button"
+            android:text="@string/back"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/buttonFavorite"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="@dimen/textSize_button"
+            android:text="@string/favorite_screen"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/buttonSetting"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="@dimen/textSize_button"
+            android:text="@string/setting"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/buttonMain"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:textSize="@dimen/textSize_button"
+            android:text="@string/main_screen"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
