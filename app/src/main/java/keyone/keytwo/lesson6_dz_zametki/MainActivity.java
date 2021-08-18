@@ -66,6 +66,15 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonBack:
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                if (Settings.isBackIsRemoveFragment) {
+                    Fragment fragmentForDelete = getVisibleFragment(fragmentManager);
+                    if (fragmentForDelete != null) {
+                        fragmentManager.beginTransaction().remove(fragmentForDelete).commit();
+                    }
+                }else {
+                    fragmentManager.popBackStack();
+                }
                 break;
 
             case R.id.buttonMain:
