@@ -111,12 +111,11 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
         }
         if (Settings.isAddFragmentUsed) {
             fragmentTransaction
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
+                    .add(R.id.fragment_container, fragment);
         }else if (Settings.isReplaceFragment)  {
             fragmentTransaction
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
+                    .replace(R.id.fragment_container, fragment);
+
         }
         if(Settings.isBackStackUsed) {
             fragmentTransaction.addToBackStack("");
