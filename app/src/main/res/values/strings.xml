@@ -11,6 +11,5 @@
     <string name="add">add</string>
     <string name="replace">replace</string>
     <string name="backasremove">BackAsRemove</string>
-    <string name="backasremove">BackAsRemove</string>
     <string name="deletebeforeadd">DeleteBeforeAdd</string>
 </resources>

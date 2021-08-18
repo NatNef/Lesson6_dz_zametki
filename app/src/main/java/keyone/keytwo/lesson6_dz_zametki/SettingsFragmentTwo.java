@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Switch;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 public class SettingsFragmentTwo extends Fragment {
@@ -21,9 +22,9 @@ public class SettingsFragmentTwo extends Fragment {
     //инициализируем кнопки
     RadioButton radioButtonReplace;
     RadioButton radioButtonAdd;
-    Switch switchBackStack;
-    Switch switchBackAsRemove;
-    Switch switchDeleteBeforeAdd;
+//    Switch switchBackStack;
+//    Switch switchBackAsRemove;
+//    Switch switchDeleteBeforeAdd;
 
     // внедряем макет
     @Override
@@ -35,19 +36,53 @@ public class SettingsFragmentTwo extends Fragment {
 
     private void initView(View v) {
         radioButtonAdd = v.findViewById(R.id.radioButtonAdd);
+        radioButtonReplace = v.findViewById(R.id.radioButtonReplace);
+        SwitchCompat switchBackStack = v.findViewById(R.id.switchBackStack);
+        SwitchCompat switchBackAsRemove = v.findViewById(R.id.switchBackAsRemove);
+        SwitchCompat switchDeleteBeforeAdd = v.findViewById(R.id.switchDeleteBeforeAdd);
+
+        // сохранить последнее состояние
+        switchDeleteBeforeAdd.setChecked(Settings.isDeleteFragmentBeforeAdd);
+        switchBackAsRemove.setChecked(Settings.isBackIsRemoveFragment);
+        switchBackStack.setChecked(Settings.isBackStackUsed);
+        switchBackStack.setChecked(Settings.isBackStackUsed);
+        radioButtonReplace.setChecked(Settings.isReplaceFragment);
+        radioButtonAdd.setChecked(Settings.isAddFragmentUsed);
+
         radioButtonAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 Settings.isAddFragmentUsed = isChecked;
-
                 //сохранение
-
                 //вызвали настройки
                 writeSettings();
             }
         });
 
-        radioButtonReplace = v.findViewById(R.id.radioButtonReplace);
+        switchBackStack.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Settings.isBackStackUsed = isChecked;
+                writeSettings();
+            }
+        });
+
+        switchBackAsRemove.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Settings.isBackIsRemoveFragment = isChecked;
+                writeSettings();
+            }
+        });
+
+        switchDeleteBeforeAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Settings.isDeleteFragmentBeforeAdd = isChecked;
+                writeSettings();
+            }
+        });
+
         radioButtonAdd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -59,6 +94,7 @@ public class SettingsFragmentTwo extends Fragment {
         });
     }
     private void writeSettings() {
+        // вызываем настойки
         SharedPreferences sharedPreferences = requireActivity()
                 .getSharedPreferences(Settings.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
         //открываем режим записи
@@ -66,6 +102,9 @@ public class SettingsFragmentTwo extends Fragment {
         //записываем по кликуна кнопку
         editor.putBoolean(Settings.IS_ADD_FRAGMENT_USED,Settings.isAddFragmentUsed);
         editor.putBoolean(Settings.IS_REPLACE_FRAGMENT,Settings.isReplaceFragment);
+        editor.putBoolean(Settings.IS_BACK_STACK_USED,Settings.isBackStackUsed);
+        editor.putBoolean(Settings.IS_BACK_IS_REMOVE_FRAGMENT,Settings.isBackIsRemoveFragment);
+        editor.putBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD,Settings.isDeleteFragmentBeforeAdd);
         editor.apply(); // применяем
     }
 
