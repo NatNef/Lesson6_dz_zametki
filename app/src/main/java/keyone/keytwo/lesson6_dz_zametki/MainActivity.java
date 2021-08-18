@@ -1,6 +1,8 @@
 package keyone.keytwo.lesson6_dz_zametki;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,8 +11,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
 
 public class  MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -22,6 +26,7 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
         // для кнопок
         //открыли файл
         readSetting();
+        initToolbar();
 
 
 //        ZametkiFragment zametkiFragment = ZametkiFragment.newInstance();
@@ -39,7 +44,41 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
                     .replace(R.id.opisanie_zametki_container, OpisanieFragment.newInstance(new Menu(0, "test")))
                     .commit();
         }
+        }
+
+        //указываем новый тулбар
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
+
+    //для тулбара
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            //обработчики нажатий на пункты меню
+            case R.id.action_main:
+                showFragment(SettingsFragment.newInstance());
+                break;
+            case R.id.action_favorite:
+                showFragment(FavoriteFragment.newInstance());
+                break;
+            case R.id.action_settings:
+                showFragment(SettingsFragmentTwo.newInstance());
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //определить меню и вызвать
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
 
     // для кнопок
     //открыли файл
@@ -88,11 +127,11 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.buttonFavorite:
-                showFragment(SettingsFragmentTwo.newInstance());
+                showFragment(FavoriteFragment.newInstance());
                 break;
 
             case R.id.buttonSetting:
-                showFragment(FavoriteFragment.newInstance());
+                showFragment(SettingsFragmentTwo.newInstance());
                 break;
 
         }
@@ -111,7 +150,7 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
         return null;
     }
 
-    private void showFragment(Fragment fragment) {
+    void showFragment(Fragment fragment) {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
