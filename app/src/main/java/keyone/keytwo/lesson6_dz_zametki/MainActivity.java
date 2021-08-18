@@ -19,15 +19,9 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-
         // для кнопок
         //открыли файл
-        SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
-        Settings.isDeleteFragmentBeforeAdd = sharedPreferences.getBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD, false);
-        Settings.isBackIsRemoveFragment = sharedPreferences.getBoolean(Settings.IS_BACK_IS_REMOVE_FRAGMENT, false);
-        Settings.isBackStackUsed = sharedPreferences.getBoolean(Settings.IS_BACK_STACK_USED, false);
-        Settings.isReplaceFragment = sharedPreferences.getBoolean(Settings.IS_REPLACE_FRAGMENT, false);
-        Settings.isAddFragmentUsed = sharedPreferences.getBoolean(Settings.IS_ADD_FRAGMENT_USED, false);
+        readSetting();
 
 
 //        ZametkiFragment zametkiFragment = ZametkiFragment.newInstance();
@@ -45,6 +39,17 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
                     .replace(R.id.opisanie_zametki_container, OpisanieFragment.newInstance(new Menu(0, "test")))
                     .commit();
         }
+    }
+
+    // для кнопок
+    //открыли файл
+    private void readSetting() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+        Settings.isDeleteFragmentBeforeAdd = sharedPreferences.getBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD, false);
+        Settings.isBackIsRemoveFragment = sharedPreferences.getBoolean(Settings.IS_BACK_IS_REMOVE_FRAGMENT, false);
+        Settings.isBackStackUsed = sharedPreferences.getBoolean(Settings.IS_BACK_STACK_USED, false);
+        Settings.isReplaceFragment = sharedPreferences.getBoolean(Settings.IS_REPLACE_FRAGMENT, false);
+        Settings.isAddFragmentUsed = sharedPreferences.getBoolean(Settings.IS_ADD_FRAGMENT_USED, false);
     }
 
     // для кнопок меню

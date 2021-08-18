@@ -12,4 +12,5 @@
     <string name="replace">replace</string>
     <string name="backasremove">BackAsRemove</string>
     <string name="deletebeforeadd">DeleteBeforeAdd</string>
+    <string name="settings">settings</string>
 </resources>
