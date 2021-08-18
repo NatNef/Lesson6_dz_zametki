@@ -2,6 +2,8 @@ package keyone.keytwo.lesson6_dz_zametki;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -81,12 +83,45 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
 
         }
 
+
+    }
+
+    Fragment getVisibleFragment(FragmentManager fragmentManager){
+        List<Fragment> flist = FragmentManager.getFragments();
+        for (int i=0; i<flist.size();i++) {
+            Fragment fragment = flist.get(i);
+            if(fragment.inVisible()){
+                return fragment;
+            }
+        }
+        return null;
     }
 
     private void showFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+
+        if (Settings.isDeleteFragmentBeforeAdd) {
+            Fragment fragmentForDelete = getVisibleFragment(fragmentManager);
+            if (fragmentForDelete != null) {
+                fragmentTransaction.remove(fragmentForDelete);
+            }
+        }
+        if (Settings.isAddFragmentUsed) {
+            fragmentTransaction
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+        }else if (Settings.isReplaceFragment)  {
+            fragmentTransaction
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+        }
+        if(Settings.isBackStackUsed) {
+            fragmentTransaction.addToBackStack("");
+        }
+        fragmentTransaction.commit();
+
+        }
     }
-}
