@@ -16,7 +16,8 @@
     <item
         android:id="@+id/action_favorite"
         android:title="@string/settings"
-        app:showAsAction="never"/>
+        android:icon="@android:drawable/star_on"
+        app:showAsAction="always"/>
 
 
 </menu>
