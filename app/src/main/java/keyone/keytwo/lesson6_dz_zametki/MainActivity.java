@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 
 public class  MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -103,6 +105,10 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
         buttonFavorite.setOnClickListener(this);
         buttonSetting.setOnClickListener(this);
         buttonMain.setOnClickListener(this);
+
+
+
+
     }
 
 
@@ -140,10 +146,10 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
     }
 
     Fragment getVisibleFragment(FragmentManager fragmentManager){
-        List<Fragment> flist = FragmentManager.getFragments();
+        List<Fragment> flist = fragmentManager.getFragments();
         for (int i=0; i<flist.size();i++) {
             Fragment fragment = flist.get(i);
-            if(fragment.inVisible()){
+            if(fragment.isVisible()){
                 return fragment;
             }
         }
