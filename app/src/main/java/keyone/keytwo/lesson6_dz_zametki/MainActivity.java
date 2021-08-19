@@ -1,8 +1,10 @@
 package keyone.keytwo.lesson6_dz_zametki;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -52,6 +54,11 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
     private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //для nav_header_main.xml
+        DrawerLayout drawerLayout = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle
+
     }
 
     //для тулбара
