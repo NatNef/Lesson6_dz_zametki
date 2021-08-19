@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.navigation.NavigationView;
+
 import java.util.List;
 
 
@@ -25,40 +28,56 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_settings);
         initView();
         // для кнопок
         //открыли файл
         readSetting();
         initToolbar();
+        initDrawer(initToolbar()); //для nav_header_main.xml
 
 
-//        ZametkiFragment zametkiFragment = ZametkiFragment.newInstance();
-
-        // получаем фрагмент-менедер(жанглер)
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.zametki_container, ZametkiFragment.newInstance())
-                .commit();
-
-        // описание применяем в ландшафтной ориентации
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.opisanie_zametki_container, OpisanieFragment.newInstance(new Menu(0, "test")))
-                    .commit();
-        }
         }
 
         //указываем новый тулбар
-    private void initToolbar() {
+    private Toolbar initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        return toolbar;
 
-        //для nav_header_main.xml
+
+    }
+
+    private void initDrawer(Toolbar toolbar) {
         DrawerLayout drawerLayout = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle
 
+        // связываем 2 меню по клику на бургер выезжает
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout,toolbar, R.string.add,R.string.app_name);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
+                    //обработчики нажатий на пункты меню
+                    case R.id.action_main:
+                        showFragment(SettingsFragment.newInstance());
+                        break;
+                    case R.id.action_favorite:
+                        showFragment(FavoriteFragment.newInstance());
+                        break;
+                    case R.id.action_settings:
+                        showFragment(SettingsFragmentTwo.newInstance());
+                        break;
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return false;
+            }
+        });
     }
 
     //для тулбара
