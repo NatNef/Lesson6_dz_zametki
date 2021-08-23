@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:textSize="@dimen/textSize_button"
-            android:text="@string/favorite_screen"
+            android:text="@string/favorite"
             android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/buttonSetting"

@@ -49,7 +49,7 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initDrawer(Toolbar toolbar) {
-        DrawerLayout drawerLayout = findViewById(R.id.nav_view);
+       DrawerLayout drawerLayout = findViewById(R.id.draver_layout);
 
         // связываем 2 меню по клику на бургер выезжает
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,
@@ -57,7 +57,7 @@ public class  MainActivity extends AppCompatActivity implements View.OnClickList
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-
+// обработка навигационного меню
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
